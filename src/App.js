@@ -3,23 +3,30 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+  state = {
+    persons: [
+      { name: "Sham", age: 28 },
+      { name: "Mondo", age: 27 },
+      { name: "Steph", age: 26 }
+    ]
+  }
+
   render() {
     // single root element 
     return (
       <div className="App">
         <h1>I'm a React App!!!</h1>
         <p>This is working!</p>
-        <Person />
-        <Person />
-        <Person />
+        <button>Switch Name</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Climbing</Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
       </div>
     );
-    // return React.createElement('div', null, 'h1', 'I\'m a React App!!!');
-    // Will need to call React.createElement to call again.
+    // Passing props and content utilizing props and props.children = the content between the tags instead of passed through as properties.
+    // Names are hard coded. Let's change that. 
 
-    // return React.createElement('div', null, React.createElement('h1', {className: 'App'}, 'I\'m a React App!!!'));
-    // Far too cumbersome, This is what it compiles to
-    // Looks like HTML but is JavaScript in the end.
+    // Core Concept: props and state are what triggers React to re-render components
   }
 }
 
