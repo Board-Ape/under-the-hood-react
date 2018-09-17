@@ -15,10 +15,34 @@ class App extends Component {
     }
   }
 
+  switchNameHandler = (newNamesArray, agesArray = null) => {
+    if (agesArray) {
+      this.setState({
+        person: [
+          { name: newNamesArray[0], age: agesArray[0] },
+          { name: newNamesArray[1], age: agesArray[1] },
+          { name: newNamesArray[2], age: agesArray[2] },
+        ]
+      })
+    }
+    else {
+      this.setState({
+        person: [
+          { name: newNamesArray[0], age: 1 },
+          { name: newNamesArray[1], age: 2 },
+          { name: newNamesArray[2], age: 3 },
+        ]
+      })
+    }
+  }
+
   render() {
     return(
       <div className="App">
         <h1>Hello I'm A React App</h1>
+        <button
+          onClick={ this.switchNameHandler.bind(this, ["Bub", "Lub", "Cub"]) }
+        >Switch All Names</button>
         <Person 
           name={this.state.person[0].name}
           age={this.state.person[0].age}
@@ -30,6 +54,8 @@ class App extends Component {
         <Person 
           name={this.state.person[2].name}
           age={this.state.person[2].age}
+          // switchName={ this.switchNameHandler.bind(this, ['Cring', 'Ming', 'Ting'], [6,7,8]) }
+          switchName={() => this.switchNameHandler(['Cring', 'Ming', 'Ting'], [6, 7, 8]) }
         />
       </div>
     )
