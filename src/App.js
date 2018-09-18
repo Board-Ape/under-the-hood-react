@@ -20,15 +20,24 @@ class App extends Component {
   }
 
   render() {
+    const buttonStyle = {
+      backgroundColor: 'yellow',
+      font: 'inherit',
+      border: '2px solid blue'
+    };
+
     return(
       <div className="App">
         <h1>Hello I'm A React App</h1>
+
         <UserInput 
           name={this.state.name[0]}
           changeNames={ this.changeNameHandler }
         />
         <UserOutput 
           name={this.state.name[0]}
+
+
         />
         <UserOutput 
           name={this.state.name[1]}
