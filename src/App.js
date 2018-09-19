@@ -9,7 +9,11 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      name: ['Drum','Sum', 'Tum'],
+      name: [
+        { first: 'Sam', last: 'Singer' },
+        { first: 'Ken', last: 'Chan' },
+        { first: 'Eve', last: 'Tang'}
+      ],
       showUserOuput: false
     }
   }
@@ -40,16 +44,13 @@ class App extends Component {
     if (this.state.showUserOuput) {
       userOutput = (
         <div>
-          <UserOutput
-            name={this.state.name[0]}
-            showTitle={this.showUserHandler}
-          />
-          <UserOutput
-            name={this.state.name[1]}
-          />
-          <UserOutput
-            name={this.state.name[2]}
-          />
+          { this.state.name.map((names,i) => {
+            return <UserOutput
+              key={i}
+              first={names.first}
+              last={names.last}
+            />
+          }) }
         </div> 
       )
     }
@@ -58,7 +59,8 @@ class App extends Component {
       <div className="App">
         <h1>Hello I'm A React App</h1>
           <UserInput 
-            name={this.state.name[0]}
+            first={this.state.name[0].first}
+            last={this.state.name[0].last}
             changeNames={ this.changeNameHandler }
             toggleShow={ this.toggleUserInputHandler }
           />

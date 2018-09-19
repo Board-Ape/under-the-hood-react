@@ -5,7 +5,7 @@ const userInput = (props) => {
         <div onClick={ props.toggleShow }> 
             <input
                 type="text"
-                value={ props.name }
+                value={ props.first + ' ' + props.last}
                 onChange={ props.changeNames }
             />
         </div>
