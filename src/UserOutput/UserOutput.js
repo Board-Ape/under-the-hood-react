@@ -3,8 +3,9 @@ import React from 'react';
 const userOutput = (props) => {
     return (
         <div>
-            <p>{props.name}</p>
-            <p>Paragraph 2</p>
+            <p>{props.first}</p>
+            <p>{props.last}</p>
+            <button onClick={props.deleteName}>Delete Name</button>
         </div>
     )
 }
