@@ -5,7 +5,7 @@ const userInput = (props) => {
         <div> 
             <input
                 type="text"
-                value={props.name}
+                value={ props.name }
                 onChange={ props.changeNames }
             />
         </div>

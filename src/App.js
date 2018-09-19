@@ -9,13 +9,20 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      name: ['Drum','Sum', 'Tum']
+      name: ['Drum','Sum', 'Tum'],
+      showUserOuput: false
     }
   }
 
   changeNameHandler = (event) => {
     this.setState({
       name: [event.target.value, 'Sum', 'Tum']
+    })
+  }
+
+  showUserHandler = () => {
+    this.setState({
+      showUserOuput: true
     })
   }
 
@@ -28,20 +35,22 @@ class App extends Component {
 
     return(
       <div className="App">
+        { this.state.showUserOuput ?
         <h1>Hello I'm A React App</h1>
 
+         : null
+      }
         <UserInput 
           name={this.state.name[0]}
           changeNames={ this.changeNameHandler }
         />
         <UserOutput 
           name={this.state.name[0]}
-
-
+          showTitle={this.showUserHandler}
         />
         <UserOutput 
           name={this.state.name[1]}
-       />
+        />
         <UserOutput 
           name={this.state.name[2]}
         />
