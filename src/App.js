@@ -20,9 +20,11 @@ class App extends Component {
     })
   }
 
-  showUserHandler = () => {
+  toggleUserInputHandler = () => {
+    const doesShow = this.state.showUserOuput;
+    
     this.setState({
-      showUserOuput: true
+      showUserOuput: !doesShow
     })
   }
 
@@ -35,25 +37,25 @@ class App extends Component {
 
     return(
       <div className="App">
-        { this.state.showUserOuput ?
         <h1>Hello I'm A React App</h1>
-
-         : null
-      }
-        <UserInput 
-          name={this.state.name[0]}
-          changeNames={ this.changeNameHandler }
-        />
-        <UserOutput 
-          name={this.state.name[0]}
-          showTitle={this.showUserHandler}
-        />
-        <UserOutput 
-          name={this.state.name[1]}
-        />
-        <UserOutput 
-          name={this.state.name[2]}
-        />
+          <UserInput 
+            name={this.state.name[0]}
+            changeNames={ this.changeNameHandler }
+            toggleShow={ this.toggleUserInputHandler }
+          />
+        { this.state.showUserOuput ?
+          <div>
+          <UserOutput 
+            name={this.state.name[0]}
+            showTitle={this.showUserHandler}
+          />
+          <UserOutput 
+            name={this.state.name[1]}
+          />
+          <UserOutput 
+            name={this.state.name[2]}
+          />
+          </div> : null}
       </div>
     )
   } 

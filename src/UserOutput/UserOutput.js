@@ -2,7 +2,7 @@ import React from 'react';
 
 const userOutput = (props) => {
     return (
-        <div onClick={props.showTitle}>
+        <div>
             <p>{props.name}</p>
             <p>Paragraph 2</p>
         </div>
