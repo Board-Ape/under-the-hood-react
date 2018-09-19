@@ -10,9 +10,9 @@ class App extends Component {
     super()
     this.state = {
       name: [
-        { first: 'Sam', last: 'Singer' },
-        { first: 'Ken', last: 'Chan' },
-        { first: 'Eve', last: 'Tang'}
+        { id: 123, first: 'Sam', last: 'Singer' },
+        { id: 456, first: 'Ken', last: 'Chan' },
+        { id: 789, first: 'Eve', last: 'Tang'}
       ],
       showUserOuput: false
     }
@@ -59,7 +59,7 @@ class App extends Component {
         <div>
           { this.state.name.map((names, index) => {
             return <UserOutput
-              key={index}
+              key={names.id}
               deleteName={ this.deletePersonHandler.bind(this, index) }
               first={names.first}
               last={names.last}
