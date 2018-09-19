@@ -28,12 +28,31 @@ class App extends Component {
     })
   }
 
-  render() {
+  render () {
     const buttonStyle = {
       backgroundColor: 'yellow',
       font: 'inherit',
       border: '2px solid blue'
     };
+
+    let userOutput = null;
+
+    if (this.state.showUserOuput) {
+      userOutput = (
+        <div>
+          <UserOutput
+            name={this.state.name[0]}
+            showTitle={this.showUserHandler}
+          />
+          <UserOutput
+            name={this.state.name[1]}
+          />
+          <UserOutput
+            name={this.state.name[2]}
+          />
+        </div> 
+      )
+    }
 
     return(
       <div className="App">
@@ -43,19 +62,7 @@ class App extends Component {
             changeNames={ this.changeNameHandler }
             toggleShow={ this.toggleUserInputHandler }
           />
-        { this.state.showUserOuput ?
-          <div>
-          <UserOutput 
-            name={this.state.name[0]}
-            showTitle={this.showUserHandler}
-          />
-          <UserOutput 
-            name={this.state.name[1]}
-          />
-          <UserOutput 
-            name={this.state.name[2]}
-          />
-          </div> : null}
+        { userOutput }
       </div>
     )
   } 
