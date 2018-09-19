@@ -32,6 +32,15 @@ class App extends Component {
     })
   }
 
+  deletePersonHandler = (personIndex) => {
+    const names = this.state.name;
+    names.splice(personIndex, 1);
+
+    this.setState({
+      name: names
+    })
+  }
+
   render () {
     const buttonStyle = {
       backgroundColor: 'yellow',
@@ -44,9 +53,10 @@ class App extends Component {
     if (this.state.showUserOuput) {
       userOutput = (
         <div>
-          { this.state.name.map((names,i) => {
+          { this.state.name.map((names, index) => {
             return <UserOutput
-              key={i}
+              key={index}
+              deleteName={ this.deletePersonHandler.bind(this, index) }
               first={names.first}
               last={names.last}
             />
