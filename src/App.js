@@ -1,115 +1,89 @@
 import React, { Component } from 'react';
 import './App.css';
-// import Person from './Person/Person';
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
-
+import Car from './Car/Car';
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      name: [
-        { id: 123, first: 'Sam', last: 'Singer' },
-        { id: 456, first: 'Ken', last: 'Chan' },
-        { id: 789, first: 'Eve', last: 'Tang'}
-      ],
-      showUserOuput: false
-    }
-  }
-
-  changeNameHandler = ( event, id ) => {
-    const personIndex = this.state.name.findIndex(person => {
-      return person.id === id
-    });
-
-    const person = {
-      ...this.state.name[personIndex]
-    };
-    
-    // Alternatively 
-    // const person = {Object.assign({}, this.state.name[personIndex])}
-
-    person.first = event.target.value;
-
-    const persons = [...this.state.name];
-    name[personIndex] = person;
-
-    this.setState({
-      name: persons
-    })
-  }
-
-  toggleUserInputHandler = () => {
-    const doesShow = this.state.showUserOuput;
-    
-    this.setState({
-      showUserOuput: !doesShow
-    })
-  }
-
-  deletePersonHandler = (personIndex) => {
-    // This is a pointer to the original STATE
-    // Poor practice, so create a copy with the slice() method
-    const names = this.state.name.slice();
-    // OR
-    // const names = [...this.state.name];
-    names.splice(personIndex, 1);
-
-    this.setState({
-      name: names
-    })
-  }
-
-  render () {
-    const buttonStyle = {
-      backgroundColor: 'yellow',
-      font: 'inherit',
-      border: '2px solid blue'
-    };
-
-    let userOutput = null;
-
-    if (this.state.showUserOuput) {
-      userOutput = (
-        <div>
-          { this.state.name.map((names, index) => {
-            return <UserOutput
-              key={names.id}
-              deleteName={ this.deletePersonHandler.bind(this, index) }
-              first={names.first}
-              last={names.last}
-            />
-          }) }
-        </div> 
-      )
+    constructor() {
+        super()
+        this.state = {
+            cars: [
+                { id: 123, name: 'Bugatti', year: '2018' },
+                { id: 456, name: 'Ferrari', year: '2017' },
+                { id: 789, name: 'Lamborghini', year: '2016'}
+            ],
+            showCar: false
+        }
     }
 
-    let userInput = null;
+    toggleShowCarHandler = () => {
+        const show = this.state.showCar;
 
-    if (this.state.showUserOuput) {
-      userInput = (
-        <div>
-          { this.state.name.map((names, index) => {
-            return <UserInput
-              first={names.first}
-              last={names.last}
-              changeNames={(event) => this.changeNameHandler(event, names.id)}
-            />
-          })
-          }
-        </div>
-      )
+        this.setState({
+            showCar: !show
+        });
     }
 
-    return(
-      <div className="App">
-        <h1 onClick={this.toggleUserInputHandler}>Hello I'm A React App</h1>
-        { userInput }
-        { userOutput }
-      </div>
-    )
-  } 
+    updateCarNameHandler = ( event, id ) => {
+
+        // Find the index that matches the id
+        const carIndex = this.state.cars.findIndex(car => {
+            return car.id === id
+        });
+
+        // Match found index to car that you want
+        const newCar = {
+            ...this.state.cars[carIndex]
+        };
+        // Take that specific car and update value to event
+        newCar.name = event.target.value;
+
+        // Create a copy of the state
+        const updateCars = [...this.state.cars];
+        // Update the copy of state with the target 
+        updateCars[carIndex] = newCar;
+
+        this.setState({
+            cars: updateCars
+        })
+    }
+
+    deleteCarHandler = (carIndex) => {
+        console.log('Hey')
+        const cars = [...this.state.cars];
+        cars.splice(carIndex, 1);
+        this.setState({
+            cars: cars
+        })
+    }
+
+    render() {
+ 
+        let cars = null;
+        if (this.state.showCar) {
+            cars = (
+                <div>
+                    { this.state.cars.map((car, index) => {
+                        return <Car
+                            key={ car.id }
+                            name={ car.name }
+                            year={ car.year }
+                            delete={ () => this.deleteCarHandler(index) }
+                            updateCarName= { (event) => this.updateCarNameHandler(event, car.id) }
+                        />
+                    })
+                    }
+                </div>
+            )
+        }
+
+        return(
+            <div className="App">
+                <h1>Your Supercar Awaits....</h1>
+                <button onClick={ this.toggleShowCarHandler }>Click Here To Display Cars</button>
+                { cars }
+            </div>
+        )
+    }
 }
 
 export default App;
