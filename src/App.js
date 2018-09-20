@@ -18,9 +18,25 @@ class App extends Component {
     }
   }
 
-  changeNameHandler = (event) => {
+  changeNameHandler = ( event, id ) => {
+    const personIndex = this.state.name.findIndex(person => {
+      return person.id === id
+    });
+
+    const person = {
+      ...this.state.name[personIndex]
+    };
+    
+    // Alternatively 
+    // const person = {Object.assign({}, this.state.name[personIndex])}
+
+    person.first = event.target.value;
+
+    const persons = [...this.state.name];
+    name[personIndex] = person;
+
     this.setState({
-      name: [event.target.value, 'Sum', 'Tum']
+      name: persons
     })
   }
 
@@ -69,15 +85,27 @@ class App extends Component {
       )
     }
 
+    let userInput = null;
+
+    if (this.state.showUserOuput) {
+      userInput = (
+        <div>
+          { this.state.name.map((names, index) => {
+            return <UserInput
+              first={names.first}
+              last={names.last}
+              changeNames={(event) => this.changeNameHandler(event, names.id)}
+            />
+          })
+          }
+        </div>
+      )
+    }
+
     return(
       <div className="App">
-        <h1>Hello I'm A React App</h1>
-          <UserInput 
-            first={this.state.name[0].first}
-            last={this.state.name[0].last}
-            changeNames={ this.changeNameHandler }
-            toggleShow={ this.toggleUserInputHandler }
-          />
+        <h1 onClick={this.toggleUserInputHandler}>Hello I'm A React App</h1>
+        { userInput }
         { userOutput }
       </div>
     )
