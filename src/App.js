@@ -1,22 +1,49 @@
 import React, { Component } from 'react';
 import './App.css';
 import Validation from './Validation/Validation';
+import CharComp from './CharComp/CharComp';
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
-            inputText: ''
+            inputText: '',
+            inputTextLength: ''
         }
     }
 
     inputChangeHandler = (event) => {
         this.setState({
-            inputText: event.target.value
+            inputText: event.target.value,
+            inputTextLength: event.target.value.length
+        })
+    }
+
+    deleteCharacterHandler = (id) => {
+        const inputStateArray = [...this.state.inputText];
+        inputStateArray.splice(id, 1);
+        this.setState({
+            inputText: inputStateArray
         })
     }
 
     render() {
+        let characters;
+        if (this.state.inputText) {
+            let copyState = [...this.state.inputText];
+            characters = (
+                <div>
+                    {copyState.map((char, index) => {
+                        return <CharComp
+                                key={index}
+                                letter={char}
+                                delete={() => this.deleteCharacterHandler(index)}
+                                />
+                    })}
+                </div>
+            )
+        }
+
         return(
             <div className='App'>   
                 <input 
@@ -24,10 +51,10 @@ class App extends Component {
                     value={this.state.inputText}
                     onChange={this.inputChangeHandler}
                 />
-                <p>{this.state.inputText.length}</p>
                 <Validation
-                    inputLength={this.state.inputText.length}
+                    inputLength={this.state.inputTextLength}
                 />
+                { characters }
             </div>
         )
     }
@@ -128,7 +155,6 @@ export default App;
 //     }
 
 //     deleteCarHandler = (carIndex) => {
-//         console.log('Hey')
 //         const cars = [...this.state.cars];
 //         cars.splice(carIndex, 1);
 //         this.setState({
