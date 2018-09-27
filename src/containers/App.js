@@ -6,6 +6,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
     constructor(props) {
         super(props)
+        console.log('Inside constructor')
         this.state = {
             cars: [
                 { id: 123, name: 'Bugatti', year: '2018' },
@@ -14,6 +15,16 @@ class App extends Component {
             ],
             showCar: false
         }
+    }
+
+    componentWillMount() {
+        console.log('Inside componentWillMount')
+
+    }
+
+    componentDidMount() {
+        console.log('Inside DidMount')
+
     }
 
     toggleShowCarHandler = () => {
@@ -52,6 +63,8 @@ class App extends Component {
     }
 
     render() {
+        console.log('Inside render')
+
         let cars = null;
 
         if ( this.state.showCar ) {
