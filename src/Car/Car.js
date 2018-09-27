@@ -4,7 +4,7 @@ import './Car.css';
 
 const car = ( props ) => {
     return(
-        <div className='Car' style={style}>
+        <div className='Car'>
             <button onClick={ props.delete }>Delete</button>
             <h2>Supercar: { props.name }</h2> 
             <h3>Built-in: {props.year}</h3>

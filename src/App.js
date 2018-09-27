@@ -57,11 +57,7 @@ class App extends Component {
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
-            cursor: 'pointer',
-            ':hover': {
-                backgroundColor: 'lightgreen',
-                color: 'black'
-            }
+            cursor: 'pointer'
         }
 
         let cars = null;
@@ -82,10 +78,6 @@ class App extends Component {
             )
             
             styles.backgroundColor = 'red';
-            styles[':hover'] = {
-                backgroundColor: 'lightred',
-                color: 'black'
-            }
         }
 
         let classes = [];
@@ -97,14 +89,14 @@ class App extends Component {
         }
 
         return (
-                <div className="App">
-                    <p className={ classes.join(' ') }>Your Supercar Awaits....</p>
-                    <button 
-                        style={styles}
-                        onClick={ this.toggleShowCarHandler 
-                    }>Click Here To Display Cars</button>
-                    { cars }
-                </div>
+            <div className="App">
+                <p className={ classes.join(' ') }>Your Supercar Awaits....</p>
+                <button 
+                    style={styles}
+                    onClick={ this.toggleShowCarHandler 
+                }>Click Here To Display Cars</button>
+                { cars }
+            </div>
         )
     }
 }
