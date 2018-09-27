@@ -1,111 +1,176 @@
 import React, { Component } from 'react';
 import './App.css';
-import Validation from './Validation/Validation';
-import CharComp from './CharComp/CharComp';
+import Car from './Car/Car';
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
-            inputText: '',
-            inputTextLength: ''
+            cars: [
+                { id: 123, name: 'Bugatti', year: '2018' },
+                { id: 456, name: 'Ferrari', year: '2017' },
+                { id: 789, name: 'Lamborghini', year: '2016'}
+            ],
+            showCar: false
         }
     }
 
-    inputChangeHandler = (event) => {
+    toggleShowCarHandler = () => {
+        const show = this.state.showCar;
+
         this.setState({
-            inputText: event.target.value,
-            inputTextLength: event.target.value.length
+            showCar: !show
+        });
+    }
+
+    updateCarNameHandler = ( event, id ) => {
+
+        const carIndex = this.state.cars.findIndex(car => {
+            return car.id === id
+        });
+
+        const newCar = {
+            ...this.state.cars[carIndex]
+        };
+        newCar.name = event.target.value;
+
+        const updateCars = [...this.state.cars];
+        updateCars[carIndex] = newCar;
+
+        this.setState({
+            cars: updateCars
         })
     }
 
-    deleteCharacterHandler = (id) => {
-        const inputStateArray = [...this.state.inputText];
-        inputStateArray.splice(id, 1);
+    deleteCarHandler = (carIndex) => {
+        const cars = [...this.state.cars];
+        cars.splice(carIndex, 1);
         this.setState({
-            inputText: inputStateArray
+            cars: cars
         })
     }
 
     render() {
-        let characters;
-        if (this.state.inputText) {
-            let copyState = [...this.state.inputText];
-            characters = (
-                <div>
-                    {copyState.map((char, index) => {
-                        return <CharComp
-                                key={index}
-                                letter={char}
-                                delete={() => this.deleteCharacterHandler(index)}
-                                />
-                    })}
-                </div>
-            )
+        const styles = {
+            backgroundColor: 'green',
+            color: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer'
         }
 
-        return(
-            <div className='App'>   
-                <input 
-                    placeholder='Type Here'
-                    value={this.state.inputText}
-                    onChange={this.inputChangeHandler}
-                />
-                <Validation
-                    inputLength={this.state.inputTextLength}
-                />
-                { characters }
+        let cars = null;
+        if ( this.state.showCar ) {
+            cars = (
+                <div>
+                    { this.state.cars.map((car, index) => {
+                        return <Car
+                            key={ car.id }
+                            name={ car.name }
+                            year={ car.year }
+                            delete={ () => this.deleteCarHandler(index) }
+                            updateCarName= { (event) => this.updateCarNameHandler(event, car.id) }
+                        />
+                    })
+                    }
+                </div>
+            )
+            
+            styles.backgroundColor = 'red';
+        }
+
+        let classes = [];
+        if ( this.state.cars.length <= 2 ) {
+            classes.push('red'); // ['red']
+        }
+        if ( this.state.cars.length <= 1 ) {
+            classes.push('bold'); // ['red', 'bold']
+        }
+
+        return (
+            <div className="App">
+                <p className={ classes.join(' ') }>Your Supercar Awaits....</p>
+                <button 
+                    style={styles}
+                    onClick={ this.toggleShowCarHandler 
+                }>Click Here To Display Cars</button>
+                { cars }
             </div>
         )
     }
 }
 
-export default App;
+export default (App);
 
 
 
+// =========================================
+// =========== Project - 2 =================
+// =========================================
 
+// import Validation from './Validation/Validation';
+// import CharComp from './CharComp/CharComp';
 
+// class App extends Component {
+//     constructor() {
+//         super()
+//         this.state = {
+//             inputText: '',
+//             inputTextLength: ''
+//         }
+//     }
 
+//     inputChangeHandler = (event) => {
+//         this.setState({
+//             inputText: event.target.value,
+//             inputTextLength: event.target.value.length
+//         })
+//     }
 
+//     deleteCharacterHandler = (id) => {
+//         const text = this.state.inputText.split('');
+//         text.splice(id, 1);
+//         const updatedText = text.join('');
 
+//         this.setState({
+//             inputText: updatedText,
+//             inputTextLength: updatedText.length
+//         })
+//     }
 
+//     render() {
+//         const characters = this.state.inputText.split('').map((char, index) => {
+//             return (
+//                 <CharComp
+//                     key={ index }
+//                     letter={ char }
+//                     delete={ () => this.deleteCharacterHandler(index) }
+//                 />
+//             )
+//         })
 
+//         return(
+//             <div className='App'>   
+//                 <input 
+//                     placeholder='Type Here'
+//                     value={this.state.inputText}
+//                     onChange={this.inputChangeHandler}
+//                 />
+//                 <Validation
+//                     inputLength={this.state.inputTextLength}
+//                 />
+//                 { characters }
+//             </div>
+//         )
+//     }
+// }
 
+// export default App;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// =========================================
+// =========== Project - 1 =================
+// =========================================
 
 // import Car from './Car/Car';
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Car.css';
 
+
 const car = ( props ) => {
     return(
         <div className='Car'>
