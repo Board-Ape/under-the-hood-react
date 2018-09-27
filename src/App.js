@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium from 'radium';
 import Car from './Car/Car';
 
 class App extends Component {
@@ -57,12 +58,16 @@ class App extends Component {
 
     render() {
         const styles = {
-            backgroundColor: 'lightgreen',
+            backgroundColor: 'green',
             color: 'white',
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            ':hover': {
+                backgroundColor: 'lightgreen',
+                color: 'black'
+            }
         }
 
         let cars = null;
@@ -83,6 +88,10 @@ class App extends Component {
             )
             
             styles.backgroundColor = 'red';
+            styles[':hover'] = {
+                backgroundColor: 'lightred',
+                color: 'black'
+            }
         }
 
         // let classes = ['red', 'bold'].join(' '); // 'red bold'
@@ -107,12 +116,13 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Radium(App);
 
 
 
-
-// Project - 2
+// =========================================
+// =========== Project - 2 =================
+// =========================================
 
 // import Validation from './Validation/Validation';
 // import CharComp from './CharComp/CharComp';
@@ -173,8 +183,9 @@ export default App;
 
 // export default App;
 
-
-// Project - 1
+// =========================================
+// =========== Project - 1 =================
+// =========================================
 
 // import Car from './Car/Car';
 

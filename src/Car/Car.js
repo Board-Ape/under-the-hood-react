@@ -1,5 +1,7 @@
 import React from 'react';
+import Radium from 'radium';
 import './Car.css';
+
 
 const car = ( props ) => {
     return(
@@ -16,4 +18,4 @@ const car = ( props ) => {
     )
 }
 
-export default car;
+export default Radium(car);
