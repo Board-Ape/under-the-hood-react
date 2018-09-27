@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Car from './Car/Car';
 
 class App extends Component {
@@ -26,21 +25,16 @@ class App extends Component {
 
     updateCarNameHandler = ( event, id ) => {
 
-        // Find the index that matches the id
         const carIndex = this.state.cars.findIndex(car => {
             return car.id === id
         });
 
-        // Match found index to car that you want
         const newCar = {
             ...this.state.cars[carIndex]
         };
-        // Take that specific car and update value to event
         newCar.name = event.target.value;
 
-        // Create a copy of the state
         const updateCars = [...this.state.cars];
-        // Update the copy of state with the target 
         updateCars[carIndex] = newCar;
 
         this.setState({
@@ -94,7 +88,6 @@ class App extends Component {
             }
         }
 
-        // let classes = ['red', 'bold'].join(' '); // 'red bold'
         let classes = [];
         if ( this.state.cars.length <= 2 ) {
             classes.push('red'); // ['red']
@@ -104,8 +97,6 @@ class App extends Component {
         }
 
         return (
-            <StyleRoot>
-
                 <div className="App">
                     <p className={ classes.join(' ') }>Your Supercar Awaits....</p>
                     <button 
@@ -113,14 +104,12 @@ class App extends Component {
                         onClick={ this.toggleShowCarHandler 
                     }>Click Here To Display Cars</button>
                     { cars }
-                </div
-                >
-            </StyleRoot>
+                </div>
         )
     }
 }
 
-export default Radium(App);
+export default (App);
 
 
 

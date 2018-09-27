@@ -1,18 +1,8 @@
 import React from 'react';
-import Radium from 'radium';
 import './Car.css';
 
 
 const car = ( props ) => {
-    // Pseudo selectors are different 
-    // Must use special component from Radium
-    const style = {
-        'media (min-width: 500px)': {
-            width: '450px',
-        }
-    }
-
-
     return(
         <div className='Car' style={style}>
             <button onClick={ props.delete }>Delete</button>
@@ -27,4 +17,4 @@ const car = ( props ) => {
     )
 }
 
-export default Radium(car);
+export default car;
