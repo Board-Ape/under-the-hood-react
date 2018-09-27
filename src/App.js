@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Car from './Car/Car';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+// import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
     constructor() {
@@ -58,16 +58,16 @@ class App extends Component {
             cars = (
                 <div>
                     { this.state.cars.map((car, index) => {
-                        return <ErrorBoundary key={car.id}>
+                        return 
                             
                             <Car
+                                key={car.id}
                                 name={ car.name }
                                 year={ car.year }
                                 delete={ () => this.deleteCarHandler(index) }
                                 updateCarName= { (event) => this.updateCarNameHandler(event, car.id) }
                             />
 
-                            </ErrorBoundary>
                     })
                     }
                 </div>
