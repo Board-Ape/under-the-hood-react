@@ -4,8 +4,8 @@ import Cars from '../components/Cars/Cars';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             cars: [
                 { id: 123, name: 'Bugatti', year: '2018' },
