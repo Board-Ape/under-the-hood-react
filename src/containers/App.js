@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Car from './Car/Car';
-// import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Cars from '../components/Cars/Cars';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
     constructor() {
@@ -57,40 +57,21 @@ class App extends Component {
         if ( this.state.showCar ) {
             cars = (
                 <div>
-                    { this.state.cars.map((car, index) => {
-                        return 
-                            
-                            <Car
-                                key={car.id}
-                                name={ car.name }
-                                year={ car.year }
-                                delete={ () => this.deleteCarHandler(index) }
-                                updateCarName= { (event) => this.updateCarNameHandler(event, car.id) }
-                            />
-
-                    })
-                    }
+                    <Cars
+                        cars={this.state.cars}  
+                        delete={this.deleteCarHandler}
+                        changed={this.updateCarNameHandler} 
+                    />
                 </div>
-            )
-            
-            
-        }
-
-        let classes = [];
-        if ( this.state.cars.length <= 2 ) {
-            classes.push( 'red' ); // ['red']
-        }
-        if ( this.state.cars.length <= 1 ) {
-            classes.push( 'bold' ); // ['red', 'bold']
+            )  
         }
 
         return (
             <div className='App'>
-                <p className={ classes.join(' ') }>Your Supercar Awaits....</p>
-                <button
-                    className='App button'
-                    onClick={ this.toggleShowCarHandler 
-                }>Click Here To Display Cars</button>
+                <Cockpit 
+                    cars={this.state.cars}
+                    show={this.toggleShowCarHandler}
+                />
                 { cars }
             </div>
         )

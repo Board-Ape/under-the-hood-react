@@ -7,7 +7,7 @@ const car = ( props ) => {
         <div className='Car'>
             <button onClick={ props.delete }>Delete</button>
             <h2>Supercar: { props.name }</h2> 
-            <h3>Built-in: {props.year}</h3>
+            <h3>Built-in: { props.year }</h3>
             <input 
                 type='text' 
                 value={ props.name } 
