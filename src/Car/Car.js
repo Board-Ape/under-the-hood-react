@@ -3,6 +3,10 @@ import './Car.css';
 
 
 const car = ( props ) => {
+    const randomNum = Math.random();
+    if (randomNum > .7) {
+        throw new Error("Something went wrong")
+    }
     return(
         <div className='Car'>
             <button onClick={ props.delete }>Delete</button>

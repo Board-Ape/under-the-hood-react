@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Car from './Car/Car';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
     constructor() {
@@ -51,48 +52,43 @@ class App extends Component {
     }
 
     render() {
-        const styles = {
-            backgroundColor: 'green',
-            color: 'white',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer'
-        }
-
         let cars = null;
+
         if ( this.state.showCar ) {
             cars = (
                 <div>
                     { this.state.cars.map((car, index) => {
-                        return <Car
-                            key={ car.id }
-                            name={ car.name }
-                            year={ car.year }
-                            delete={ () => this.deleteCarHandler(index) }
-                            updateCarName= { (event) => this.updateCarNameHandler(event, car.id) }
-                        />
+                        return <ErrorBoundary key={car.id}>
+                            
+                            <Car
+                                name={ car.name }
+                                year={ car.year }
+                                delete={ () => this.deleteCarHandler(index) }
+                                updateCarName= { (event) => this.updateCarNameHandler(event, car.id) }
+                            />
+
+                            </ErrorBoundary>
                     })
                     }
                 </div>
             )
             
-            styles.backgroundColor = 'red';
+            
         }
 
         let classes = [];
         if ( this.state.cars.length <= 2 ) {
-            classes.push('red'); // ['red']
+            classes.push( 'red' ); // ['red']
         }
         if ( this.state.cars.length <= 1 ) {
-            classes.push('bold'); // ['red', 'bold']
+            classes.push( 'bold' ); // ['red', 'bold']
         }
 
         return (
-            <div className="App">
+            <div className='App'>
                 <p className={ classes.join(' ') }>Your Supercar Awaits....</p>
-                <button 
-                    style={styles}
+                <button
+                    className='App button'
                     onClick={ this.toggleShowCarHandler 
                 }>Click Here To Display Cars</button>
                 { cars }
