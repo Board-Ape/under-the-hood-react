@@ -4,8 +4,9 @@ import Cars from '../components/Cars/Cars';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+        console.log('Inside constructor')
         this.state = {
             cars: [
                 { id: 123, name: 'Bugatti', year: '2018' },
@@ -14,6 +15,30 @@ class App extends Component {
             ],
             showCar: false
         }
+    }
+
+    componentWillMount() {
+        console.log('App - Inside componentWillMount')
+
+    }
+
+    componentDidMount() {
+        console.log('App - Inside DidMount')
+
+    }
+
+    shouldComponentUpdate( nextProps, nextState ) {
+        console.log('App - Inside shouldComponentUpdate', nextProps, nextState)
+        return true;
+    }
+
+    componentWillUpdate( nextProps, nextState ) {
+        console.log('App - Inside componentWillUpdate', nextProps, nextState)
+    }
+
+    componentDidUpdate( nextProps, nextState ) {
+        console.log('App - Inside componentDidUpdate', nextProps, nextState)
+
     }
 
     toggleShowCarHandler = () => {
@@ -52,6 +77,8 @@ class App extends Component {
     }
 
     render() {
+        console.log('App - Inside render')
+
         let cars = null;
 
         if ( this.state.showCar ) {
