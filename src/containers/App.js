@@ -18,12 +18,26 @@ class App extends Component {
     }
 
     componentWillMount() {
-        console.log('Inside componentWillMount')
+        console.log('App - Inside componentWillMount')
 
     }
 
     componentDidMount() {
-        console.log('Inside DidMount')
+        console.log('App - Inside DidMount')
+
+    }
+
+    shouldComponentUpdate( nextProps, nextState ) {
+        console.log('App - Inside shouldComponentUpdate', nextProps, nextState)
+        return true;
+    }
+
+    componentWillUpdate( nextProps, nextState ) {
+        console.log('App - Inside componentWillUpdate', nextProps, nextState)
+    }
+
+    componentDidUpdate( nextProps, nextState ) {
+        console.log('App - Inside componentDidUpdate', nextProps, nextState)
 
     }
 
@@ -63,7 +77,7 @@ class App extends Component {
     }
 
     render() {
-        console.log('Inside render')
+        console.log('App - Inside render')
 
         let cars = null;
 
