@@ -1,5 +1,6 @@
 import React from 'react';
 import styling from './Cockpit.css';
+import Aux from '../../hoc/Aux';
 
 const cockpit = ( props ) => {
 
@@ -18,13 +19,13 @@ const cockpit = ( props ) => {
     }
 
     return (
-        <div>
+        <Aux>
             <p className = { classes.join(' ') } > Your Supercar Awaits....</p >
             <button
                 className={ btnClass }
                 onClick={ props.show }
             >Click Here To Display Cars</button>
-        </div>
+        </Aux>
     );
 }
 
