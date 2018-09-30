@@ -1,7 +1,8 @@
-import React { Component } from 'react';
-import UserInput from '../UserInput/USerInput';
+import React, {Component} from 'react';
+import UserInput from '../UserInput/UserInput';
+import AnimalCard from '../AnimalCard/AnimalCard';
 
-class AnimalContainer = () => {
+class AnimalContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -14,11 +15,35 @@ class AnimalContainer = () => {
         }
     }
 
+    updateTitleHandler = (event) => {
+        this.setState({
+            title: event.target.value
+        })
+    }
+
+    deleteCardHandler = (id) => {
+        const copyState = [...this.state.animals];
+        copyState.splice(id, 1)
+        this.setState({
+            animals: copyState
+        })
+    }
+
     render() {
         return (
-
+            <div>
+                <h1>The {this.state.title} Kingom</h1>
+                <UserInput
+                    title={this.state.title}
+                    change={this.updateTitleHandler}
+                />
+                <AnimalCard
+                    animals={ this.state.animals }
+                    delete={ this.deleteCardHandler }
+                />
+            </div>
         )
     }
 }
 
-export deafult AnimalContainer;
+export default AnimalContainer;

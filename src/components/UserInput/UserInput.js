@@ -12,6 +12,7 @@ class UserInput extends Component {
         this.setState ({
             input: event.target.value
         });
+        this.props.change(event);
     }
 
     render() {
