@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Cars from '../components/Cars/Cars';
 import Cockpit from '../components/Cockpit/Cockpit';
+import Aux from '../hoc/Aux';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
     constructor(props) {
@@ -94,18 +96,18 @@ class App extends Component {
         }
 
         return (
-            <div className='App'>
+            <Aux>
                 <Cockpit 
                     cars={this.state.cars}
                     show={this.toggleShowCarHandler}
                 />
                 { cars }
-            </div>
+            </Aux>
         )
     }
 }
 
-export default (App);
+export default WithClass(App, 'App');
 
 
 
