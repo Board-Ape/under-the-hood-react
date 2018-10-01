@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Aux from '../Aux/Aux';
 
 class UserInput extends Component {
     constructor(props) {
@@ -17,13 +18,14 @@ class UserInput extends Component {
 
     render() {
         return (
-            <div>
+            <Aux>
                 <input
+                    placeholder='Input Text Here'
                     value={this.state.input} 
                     onChange={(event) => this.handleInputChange(event)}
                 />
                 <p>{ this.state.input }</p>
-            </div>
+            </Aux>
         )
     }
 }

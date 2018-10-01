@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import UserInput from '../UserInput/UserInput';
 import AnimalCard from '../AnimalCard/AnimalCard';
+import Aux from '../Aux/Aux';
 
 class AnimalContainer extends Component {
     constructor(props) {
@@ -31,8 +32,8 @@ class AnimalContainer extends Component {
 
     render() {
         return (
-            <div>
-                <h1>The {this.state.title} Kingom</h1>
+            <Aux>
+                <h1>The {this.state.title} Kingdom</h1>
                 <UserInput
                     title={this.state.title}
                     change={this.updateTitleHandler}
@@ -41,7 +42,7 @@ class AnimalContainer extends Component {
                     animals={ this.state.animals }
                     delete={ this.deleteCardHandler }
                 />
-            </div>
+            </Aux>
         )
     }
 }
