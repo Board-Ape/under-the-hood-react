@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import classes from './AnimalContainer.css';
 import UserInput from '../UserInput/UserInput';
 import AnimalCard from '../AnimalCard/AnimalCard';
 import Aux from '../Aux/Aux';
@@ -40,6 +41,8 @@ class AnimalContainer extends Component {
 
     render() {
         let cards = null;
+        let toggleButtonColor = classes.Green;
+
         if (this.state.showCards) {
             cards = (
                 <AnimalCard
@@ -47,7 +50,9 @@ class AnimalContainer extends Component {
                     delete={this.deleteCardHandler}
                 />
             )
-        }
+        } 
+
+        this.state.showCards ? toggleButtonColor = classes.Red : toggleButtonColor = classes.Green
 
         return (
             <Aux>
@@ -58,6 +63,7 @@ class AnimalContainer extends Component {
                 />
                 <button 
                     onClick={this.toggleCardsHandler}
+                    className={toggleButtonColor}
                 >Toggle Cards</button>
                 { cards }
             </Aux>

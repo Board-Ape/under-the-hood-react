@@ -1,0 +1,19 @@
+.Red {
+    background: red;
+    color: white;
+    font-size: 20px;
+}
+
+.Red:hover {
+    background-color: salmon; 
+}
+
+.Green {
+    background-color: green;
+    color: white;
+    font-size: 20px;
+}
+
+.Green:hover {
+    background-color: lightgreen;
+}
