@@ -39,6 +39,16 @@ class AnimalContainer extends Component {
         })
     }
 
+    resetCardsHandler = () => {
+        this.setState({
+            animals: [
+                { id: 123, name: 'Cheetah', age: 12 },
+                { id: 345, name: 'Bison', age: 35 },
+                { id: 567, name: 'Gazelle', age: 8 }
+            ],
+        })
+    }
+
     render() {
         let cards = null;
         let toggleButtonColor = classes.Green;
@@ -65,6 +75,9 @@ class AnimalContainer extends Component {
                     onClick={this.toggleCardsHandler}
                     className={toggleButtonColor}
                 >Toggle Cards</button>
+                <button
+                    onClick={this.resetCardsHandler}
+                >Reset</button>
                 { cards }
             </Aux>
         )

@@ -1,7 +1,10 @@
-.Red {
-    background: red;
+.AnimalButton {
     color: white;
     font-size: 20px;
+}
+
+.Red {
+    background: red;
 }
 
 .Red:hover {
@@ -10,8 +13,6 @@
 
 .Green {
     background-color: green;
-    color: white;
-    font-size: 20px;
 }
 
 .Green:hover {
