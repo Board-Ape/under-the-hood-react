@@ -14,7 +14,8 @@ class AnimalContainer extends Component {
                 { id: 567, name: 'Gazelle', age: 8 }
             ],
             title: 'Animal',
-            showCards: false
+            showCards: false,
+            toggleClicked: 0
         }
     }
 
@@ -35,7 +36,8 @@ class AnimalContainer extends Component {
     toggleCardsHandler = () => {
         const showState = this.state.showCards;
         this.setState({
-            showCards: !showState
+            showCards: !showState,
+            toggleClicked: this.state.toggleClicked + 1
         })
     }
 
@@ -63,6 +65,8 @@ class AnimalContainer extends Component {
         } 
 
         this.state.showCards ? toggleButtonColor = classes.Red : toggleButtonColor = classes.Green
+
+        console.log(this.state.toggleClicked)
 
         return (
             <Aux>
