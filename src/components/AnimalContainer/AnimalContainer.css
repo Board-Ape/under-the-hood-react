@@ -1,0 +1,20 @@
+.AnimalButton {
+    color: white;
+    font-size: 20px;
+}
+
+.Red {
+    background: red;
+}
+
+.Red:hover {
+    background-color: salmon; 
+}
+
+.Green {
+    background-color: green;
+}
+
+.Green:hover {
+    background-color: lightgreen;
+}
