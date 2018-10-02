@@ -35,9 +35,11 @@ class AnimalContainer extends Component {
 
     toggleCardsHandler = () => {
         const showState = this.state.showCards;
-        this.setState({
-            showCards: !showState,
-            toggleClicked: this.state.toggleClicked + 1
+        this.setState( (prevState, props) => {
+            return {
+                showCards: !showState,
+                toggleClicked: prevState.toggleClicked + 1
+            }
         })
     }
 
