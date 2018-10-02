@@ -3,6 +3,7 @@ import classes from './AnimalContainer.css';
 import UserInput from '../UserInput/UserInput';
 import AnimalCard from '../AnimalCard/AnimalCard';
 import Aux from '../Aux/Aux';
+import PropTypes from 'prop-types';
 
 class AnimalContainer extends Component {
     constructor(props) {
@@ -83,5 +84,12 @@ class AnimalContainer extends Component {
         )
     }
 }
+
+AnimalContainer.propTypes = {
+    change: PropTypes.func,
+    title: PropTypes.string,
+    animals: PropTypes.array,
+    delete: PropTypes.func
+};
 
 export default AnimalContainer;
