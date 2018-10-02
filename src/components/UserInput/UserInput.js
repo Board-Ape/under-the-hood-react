@@ -16,10 +16,15 @@ class UserInput extends Component {
         this.props.change(event);
     }
 
+    componentDidMount() {
+        this.inputElement.focus();
+    }
+
     render() {
         return (
             <Aux>
                 <input
+                    ref={(inp) => { this.inputElement = inp }}
                     placeholder='Input Text Here'
                     value={this.state.input} 
                     onChange={(event) => this.handleInputChange(event)}
