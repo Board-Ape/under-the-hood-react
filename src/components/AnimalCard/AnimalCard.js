@@ -1,12 +1,12 @@
 import React from 'react';
-import './AnimalCard.css';
+import classes from './AnimalCard.css';
 
 const animalCard = (props) => {
 
     return props.animals.map((animal, index) => {
         return (
             <div 
-                className='AnimalCard' 
+                className={classes.AnimalCard} 
                 key={animal.id}
                 onClick={() => props.delete(index)}
                 
