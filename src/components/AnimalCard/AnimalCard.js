@@ -9,6 +9,7 @@ const animalCard = (props) => {
                 className={classes.AnimalCard} 
                 key={animal.id}
                 onClick={() => props.delete(index)}
+                
             >
                 <h1>{ animal.name }</h1>
                 <h2>{ animal.age }</h2>
