@@ -6,7 +6,13 @@ class UserInput extends Component {
         super(props)
         this.state = {
             input: ''
-        }
+        },
+        this.inputElement = React.createRef();
+    }
+
+    componentDidMount () {
+        console.log('This component mounted')
+        this.inputElement.current.focus();
     }
     
     handleInputChange = (event) => {
@@ -20,6 +26,7 @@ class UserInput extends Component {
         return (
             <Aux>
                 <input
+                    ref={this.inputElement}
                     placeholder='Input Text Here'
                     value={this.state.input} 
                     onChange={(event) => this.handleInputChange(event)}
